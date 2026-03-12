@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Metro Zoo — Brand Identity System</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f0e8;
+    --cream: #ede7d3;
+    --red: #d93a2b;
+    --electric: #4dff91;
+    --warm: #e8c547;
+    --mid: #2a2a2a;
+    --muted: #5a5a5a;
+    --border: rgba(245,240,232,0.12);
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+    --font-serif: 'DM Serif Display', serif;
+    --font-body: 'IBM Plex Mono', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3rem;
+    height: 56px;
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 22px;
+    letter-spacing: 0.08em;
+    color: var(--white);
+  }
+  .nav-logo span { color: var(--red); }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-studio {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+  .nav-studio span { color: var(--electric); }
+
+  /* SECTIONS */
+  section {
+    min-height: 100vh;
+    padding: 100px 3rem 80px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* HERO */
+  #hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    padding-top: 120px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--electric);
+    margin-bottom: 2rem;
+  }
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(80px, 14vw, 200px);
+    line-height: 0.88;
+    letter-spacing: -0.01em;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+  .hero-title .red { color: var(--red); }
+  .hero-subtitle {
+    font-family: var(--font-serif);
+    font-size: clamp(18px, 2.5vw, 28px);
+    font-style: italic;
+    color: var(--muted);
+    margin-top: 2rem;
+    max-width: 560px;
+  }
+  .hero-meta {
+    margin-top: 4rem;
+    display: flex;
+    gap: 4rem;
+  }
+  .hero-meta-item label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 6px;
+  }
+  .hero-meta-item value {
+    font-size: 14px;
+    color: var(--white);
+  }
+  .hero-bg-text {
+    position: absolute;
+    right: -2%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--font-display);
+    font-size: 28vw;
+    color: rgba(255,255,255,0.02);
+    pointer-events: none;
+    letter-spacing: -0.05em;
+    line-height: 1;
+  }
+
+  /* STRATEGY */
+  #strategy { min-height: auto; }
+  .strategy-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--border);
+    margin-top: 0;
+  }
+  .strategy-cell {
+    background: var(--black);
+    padding: 3rem;
+  }
+  .strategy-cell.full { grid-column: 1 / -1; }
+  .strategy-cell h3 {
+    font-family: var(--font-display);
+    font-size: 32px;
+    letter-spacing: 0.05em;
+    color: var(--red);
+    margin-bottom: 1rem;
+  }
+  .strategy-cell p {
+    font-size: 14px;
+    color: var(--cream);
+    line-height: 1.8;
+    max-width: 540px;
+  }
+  .big-quote {
+    font-family: var(--font-serif);
+    font-size: clamp(22px, 3.5vw, 42px);
+    font-style: italic;
+    line-height: 1.3;
+    color: var(--white);
+    border-left: 3px solid var(--red);
+    padding-left: 2rem;
+    max-width: 800px;
+  }
+  .pillars {
+    display: flex;
+    gap: 3rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
+  .pillar {
+    flex: 1;
+    min-width: 180px;
+  }
+  .pillar-num {
+    font-family: var(--font-display);
+    font-size: 60px;
+    color: rgba(255,255,255,0.06);
+    line-height: 1;
+  }
+  .pillar h4 {
+    font-family: var(--font-display);
+    font-size: 20px;
+    letter-spacing: 0.1em;
+    color: var(--warm);
+    margin-bottom: 0.5rem;
+  }
+  .pillar p { font-size: 13px; color: var(--muted); }
+
+  /* ARCHETYPE */
+  #archetype { min-height: auto; }
+  .archetype-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+    margin-top: 3rem;
+  }
+  .archetype-name {
+    font-family: var(--font-display);
+    font-size: clamp(60px, 8vw, 100px);
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+  }
+  .archetype-name em {
+    display: block;
+    color: var(--red);
+    font-style: normal;
+  }
+  .archetype-desc {
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--cream);
+    margin-top: 2rem;
+  }
+  .archetype-traits {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .trait {
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+  }
+  .trait label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--electric);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .trait p { font-size: 13px; color: var(--cream); }
+  .tension-map {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .tension-row {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .tension-a { text-align: right; }
+  .tension-b { text-align: left; }
+  .tension-a, .tension-b {
+    font-size: 13px;
+    color: var(--cream);
+    font-weight: 700;
+  }
+  .tension-line {
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    white-space: nowrap;
+  }
+  .tension-bar {
+    height: 2px;
+    background: linear-gradient(to right, var(--red), var(--electric));
+    width: 60px;
+    display: block;
+    margin: 4px auto 0;
+  }
+
+  /* TOV */
+  #tov { min-height: auto; }
+  .tov-matrix {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    background: var(--border);
+    margin-top: 3rem;
+  }
+  .tov-cell {
+    background: var(--black);
+    padding: 2.5rem 2rem;
+    position: relative;
+  }
+  .tov-cell.header {
+    background: var(--mid);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+  }
+  .tov-register {
+    font-family: var(--font-display);
+    font-size: 26px;
+    letter-spacing: 0.05em;
+    color: var(--warm);
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+  .tov-context {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .tov-examples { list-style: none; }
+  .tov-examples li {
+    font-size: 12px;
+    color: var(--cream);
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    line-height: 1.5;
+  }
+  .tov-examples li::before {
+    content: '→ ';
+    color: var(--red);
+  }
+  .tov-adj {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .adj-tag {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 4px 10px;
+    color: var(--muted);
+  }
+  .tov-cell.active .adj-tag {
+    border-color: var(--red);
+    color: var(--red);
+  }
+  .tov-dividers {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--border);
+  }
+  .tov-divider-cell {
+    background: var(--black);
+    padding: 2.5rem;
+  }
+  .tov-divider-cell h4 {
+    font-family: var(--font-display);
+    font-size: 22px;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.5rem;
+  }
+  .tov-divider-cell h4.yes { color: var(--electric); }
+  .tov-divider-cell h4.no { color: var(--red); }
+  .tov-divider-cell ul { list-style: none; }
+  .tov-divider-cell ul li {
+    font-size: 13px;
+    color: var(--cream);
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .tov-divider-cell ul.yes li::before { content: '✓  '; color: var(--electric); }
+  .tov-divider-cell ul.no li::before { content: '✕  '; color: var(--red); }
+
+  /* MESSAGING */
+  #messaging { min-height: auto; }
+  .msg-stack {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    background: var(--border);
+  }
+  .msg-row {
+    display: grid;
+    grid-template-columns: 200px 1fr 1fr;
+    gap: 2px;
+    background: var(--border);
+  }
+  .msg-cell {
+    background: var(--black);
+    padding: 2rem 2.5rem;
+  }
+  .msg-tier {
+    background: var(--mid);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .msg-tier-num {
+    font-family: var(--font-display);
+    font-size: 48px;
+    color: rgba(255,255,255,0.08);
+    line-height: 1;
+  }
+  .msg-tier-name {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .msg-main {
+    font-family: var(--font-display);
+    font-size: 26px;
+    letter-spacing: 0.03em;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+  }
+  .msg-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .msg-copy {
+    font-size: 13px;
+    color: var(--cream);
+    line-height: 1.8;
+    font-style: italic;
+  }
+
+  /* COLOR */
+  #color { min-height: auto; }
+  .color-system {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2px;
+    background: var(--border);
+    margin-top: 3rem;
+  }
+  .swatch {
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .swatch-fill {
+    height: 180px;
+    width: 100%;
+  }
+  .swatch-info {
+    background: var(--mid);
+    padding: 1rem;
+  }
+  .swatch-name {
+    font-family: var(--font-display);
+    font-size: 18px;
+    letter-spacing: 0.05em;
+    margin-bottom: 2px;
+  }
+  .swatch-hex {
+    font-size: 11px;
+    color: var(--muted);
+    font-family: var(--font-mono);
+  }
+  .swatch-role {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+  .color-usage {
+    margin-top: 2px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+    background: var(--border);
+  }
+  .color-usage-cell {
+    background: var(--black);
+    padding: 2rem;
+  }
+  .color-usage-cell h4 {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+  .usage-example {
+    font-size: 13px;
+    color: var(--cream);
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .usage-example span { color: var(--warm); }
+
+  /* TYPOGRAPHY */
+  #typography { min-height: auto; }
+  .type-specimens {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    background: var(--border);
+  }
+  .type-row {
+    background: var(--black);
+    padding: 3rem;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  .type-meta label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .type-meta p {
+    font-size: 12px;
+    color: var(--cream);
+    line-height: 1.7;
+  }
+  .type-meta small {
+    font-size: 10px;
+    color: var(--muted);
+    font-style: italic;
+  }
+  .type-sample-display {
+    font-family: var(--font-display);
+    font-size: 72px;
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    color: var(--white);
+  }
+  .type-sample-serif {
+    font-family: var(--font-serif);
+    font-size: 36px;
+    font-style: italic;
+    color: var(--cream);
+    line-height: 1.2;
+  }
+  .type-sample-mono {
+    font-family: var(--font-mono);
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.7;
+    letter-spacing: 0.03em;
+  }
+  .type-sample-body {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--cream);
+    line-height: 1.9;
+  }
+  .type-scale {
+    margin-top: 2px;
+    background: var(--black);
+    padding: 3rem;
+  }
+  .type-scale h4 {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2rem;
+  }
+  .scale-row {
+    display: flex;
+    align-items: baseline;
+    gap: 2rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .scale-size {
+    font-size: 10px;
+    color: var(--muted);
+    width: 80px;
+    flex-shrink: 0;
+    font-family: var(--font-mono);
+  }
+  .scale-use {
+    font-size: 10px;
+    color: var(--muted);
+    width: 160px;
+    flex-shrink: 0;
+  }
+
+  /* SOCIAL */
+  #social { min-height: auto; }
+  .social-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+    background: var(--border);
+    margin-top: 3rem;
+  }
+  .social-card {
+    background: var(--black);
+    padding: 2.5rem;
+  }
+  .social-platform {
+    font-family: var(--font-display);
+    font-size: 28px;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    margin-bottom: 0.25rem;
+  }
+  .social-handle {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--electric);
+    margin-bottom: 2rem;
+  }
+  .social-content-type {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+    margin-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+  }
+  .social-detail {
+    font-size: 13px;
+    color: var(--cream);
+    line-height: 1.7;
+  }
+  .content-pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    background: var(--border);
+    margin-top: 2px;
+  }
+  .content-pillar {
+    background: var(--black);
+    padding: 2.5rem 2rem;
+  }
+  .pillar-pct {
+    font-family: var(--font-display);
+    font-size: 52px;
+    color: var(--red);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .pillar-title {
+    font-family: var(--font-display);
+    font-size: 20px;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+  }
+  .pillar-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* RA */
+  #ra { min-height: auto; }
+  .ra-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--border);
+    margin-top: 3rem;
+  }
+  .ra-cell {
+    background: var(--black);
+    padding: 2.5rem;
+  }
+  .ra-cell h3 {
+    font-family: var(--font-display);
+    font-size: 24px;
+    letter-spacing: 0.05em;
+    color: var(--warm);
+    margin-bottom: 1.5rem;
+  }
+  .ra-cell ul { list-style: none; }
+  .ra-cell ul li {
+    font-size: 13px;
+    color: var(--cream);
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.6;
+  }
+  .ra-cell ul li::before { content: '— '; color: var(--muted); }
+  .ra-bio {
+    font-size: 15px;
+    color: var(--cream);
+    line-height: 1.9;
+    font-family: var(--font-serif);
+    font-style: italic;
+    padding: 2.5rem;
+    background: var(--mid);
+    margin-top: 2px;
+    border-left: 3px solid var(--electric);
+  }
+
+  /* VISUAL LANGUAGE */
+  #visual { min-height: auto; }
+  .visual-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--border);
+    margin-top: 3rem;
+  }
+  .visual-cell {
+    background: var(--black);
+    padding: 2.5rem;
+  }
+  .visual-cell h3 {
+    font-family: var(--font-display);
+    font-size: 24px;
+    letter-spacing: 0.05em;
+    color: var(--red);
+    margin-bottom: 1.5rem;
+  }
+  .visual-cell ul { list-style: none; }
+  .visual-cell ul li {
+    font-size: 13px;
+    color: var(--cream);
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.6;
+  }
+  .visual-cell ul li::before { content: '→ '; color: var(--warm); }
+  .poster-mock {
+    background: var(--mid);
+    aspect-ratio: 3/4;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .poster-mock.red-bg { background: var(--red); }
+  .poster-mock.green-bg { background: #1a3a2a; }
+  .pm-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.6;
+  }
+  .pm-title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 6vw, 60px);
+    line-height: 0.85;
+    letter-spacing: 0.02em;
+  }
+  .pm-footer {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    opacity: 0.5;
+  }
+  .mock-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+    background: var(--border);
+    margin-top: 2px;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 4rem 3rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+  .footer-left h2 {
+    font-family: var(--font-display);
+    font-size: 48px;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    line-height: 1;
+  }
+  .footer-left h2 span { color: var(--red); }
+  .footer-left p {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 1rem;
+  }
+  .footer-right {
+    text-align: right;
+  }
+  .footer-right p {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 2;
+  }
+  .footer-right strong { color: var(--electric); }
+
+  @media (max-width: 900px) {
+    nav { padding: 0 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 80px 1.5rem 60px; }
+    .strategy-grid, .tov-matrix, .social-grid, .archetype-hero,
+    .ra-grid, .visual-grid, .color-system, .content-pillars-grid { grid-template-columns: 1fr; }
+    .tov-matrix { grid-template-columns: 1fr 1fr; }
+    .msg-row { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 2rem; }
+    .footer-right { text-align: left; }
+    .hero-bg-text { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">METRO <span>ZOO</span></div>
+  <ul class="nav-links">
+    <li><a href="#strategy">Strategy</a></li>
+    <li><a href="#archetype">Archetype</a></li>
+    <li><a href="#tov">Voice</a></li>
+    <li><a href="#messaging">Messaging</a></li>
+    <li><a href="#color">Color</a></li>
+    <li><a href="#social">Social</a></li>
+    <li><a href="#ra">RA</a></li>
+  </ul>
+  <span class="nav-studio">studio<span>.build</span></span>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-eyebrow">Brand Identity System — 2025</div>
+  <div class="hero-title">
+    METRO<br><span class="red">ZOO</span>
+  </div>
+  <p class="hero-subtitle">A brand for the collectors, the wanderers, the ones who still believe a good record can move a room.</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <label>Collective</label>
+      <value>Alvi · Ricky · Baby</value>
+    </div>
+    <div class="hero-meta-item">
+      <label>Territory</label>
+      <value>New York City</value>
+    </div>
+    <div class="hero-meta-item">
+      <label>Genre</label>
+      <value>House · Dub · Jazz · Disco · Balearic · World</value>
+    </div>
+    <div class="hero-meta-item">
+      <label>Prepared by</label>
+      <value>studio.build</value>
+    </div>
+  </div>
+  <div class="hero-bg-text">ZOO</div>
+</section>
+
+<!-- BRAND STRATEGY -->
+<section id="strategy">
+  <div class="section-label">01 — Brand Strategy</div>
+  <div class="strategy-grid">
+    <div class="strategy-cell full">
+      <p class="big-quote">"We are the city as ecosystem — feral, curious, alive with strange frequencies and unexpected beauty."</p>
+    </div>
+    <div class="strategy-cell">
+      <h3>The Narrative</h3>
+      <p>Metro Zoo operates at the crossroads of urban grit and cosmopolitan curiosity. The name itself is the thesis: a metropolis is a zoo — not in the diminishing sense, but in the sense of radical biodiversity, strange coexistence, and spectacular life lived in close quarters.<br><br>Where other DJ collectives chase scenes or scenes chase them, Metro Zoo builds habitats. Each set is an ecosystem: house pulses like a heartbeat, dub opens space like a forest clearing, jazz introduces dissonance and wonder, balearic dissolves the city into ocean air. The music moves like migration — purposeful, seasonal, alive.<br><br>Alvi, Ricky, and Baby are naturalists as much as selectors. They excavate records the way field biologists document specimens — with deep knowledge, genuine reverence, and a kind of joy that comes from finding something rare in the wild.</p>
+    </div>
+    <div class="strategy-cell">
+      <h3>Strategic Position</h3>
+      <p>Metro Zoo occupies white space between two poles: the hyper-specialized genre collector (too narrow) and the vibe-first DJ-as-brand (too shallow). Metro Zoo's competitive moat is <em>breadth with depth</em> — they can move from dub to jazz to balearic within a single night because each territory has been truly studied, not sampled.<br><br>This positions them uniquely for:<br><br>· Venues that value musical intelligence and crowd education over hype cycles<br>· Residencies that reward loyalty and scene-building<br>· Listeners who are tired of algorithmic taste and crave curation with a point of view<br>· Press and platforms that document culture rather than chase it</p>
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-num">01</div>
+          <h4>Curiosity</h4>
+          <p>Permanent students of the record. Always digging deeper.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">02</div>
+          <h4>Ecosystem</h4>
+          <p>Music as habitat. Every set builds a world.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">03</div>
+          <h4>Warmth</h4>
+          <p>Knowledgeable but never cold. Community always first.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHETYPE -->
+<section id="archetype">
+  <div class="section-label">02 — Brand Archetype</div>
+  <div class="archetype-hero">
+    <div>
+      <div class="archetype-name">
+        THE<br>
+        <em>EXPLORER</em><br>
+        + SAGE
+      </div>
+      <p class="archetype-desc">The primary archetype is The Explorer — driven by wanderlust, drawn to the undiscovered, allergic to formula. The secondary is The Sage — deep knowledge not worn as superiority but as generosity, sharing what's been found on the road.<br><br>This combination is rare in electronic music, where brands tend toward The Rebel (cool by opposition) or The Jester (cool by irreverence). Metro Zoo's duality gives them range: they can be adventurous and authoritative, warm and nerdy, accessible and deep.</p>
+      <div class="archetype-traits">
+        <div class="trait">
+          <label>Core desire</label>
+          <p>Discovery — new sounds, new connections, new ways of hearing</p>
+        </div>
+        <div class="trait">
+          <label>Core gift</label>
+          <p>Deep curation that opens ears to what they didn't know they needed</p>
+        </div>
+        <div class="trait">
+          <label>Core fear</label>
+          <p>Formulaic sets, genre traps, forgettable nights</p>
+        </div>
+        <div class="trait">
+          <label>Core shadow</label>
+          <p>Obscurantism — avoid the trap of gatekeeping the very joy you're sharing</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="tension-map">
+        <p style="font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); margin-bottom:0.5rem;">Brand Tensions — Held Simultaneously</p>
+        <div class="tension-row">
+          <span class="tension-a">Cosmopolitan</span>
+          <span class="tension-line">←<span class="tension-bar"></span>→</span>
+          <span class="tension-b">Local</span>
+        </div>
+        <div class="tension-row">
+          <span class="tension-a">Eclectic</span>
+          <span class="tension-line">←<span class="tension-bar"></span>→</span>
+          <span class="tension-b">Focused</span>
+        </div>
+        <div class="tension-row">
+          <span class="tension-a">Playful</span>
+          <span class="tension-line">←<span class="tension-bar"></span>→</span>
+          <span class="tension-b">Serious</span>
+        </div>
+        <div class="tension-row">
+          <span class="tension-a">Vinyl purist</span>
+          <span class="tension-line">←<span class="tension-bar"></span>→</span>
+          <span class="tension-b">Digitally fluid</span>
+        </div>
+        <div class="tension-row">
+          <span class="tension-a">Underground</span>
+          <span class="tension-line">←<span class="tension-bar"></span>→</span>
+          <span class="tension-b">Open doors</span>
+        </div>
+      </div>
+      <div style="margin-top:3rem; padding:2rem; background:var(--mid); border-left:3px solid var(--warm);">
+        <p style="font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); margin-bottom:1rem;">Reference World</p>
+        <p style="font-size:13px; color:var(--cream); line-height:1.8;">National Geographic crossed with a dusty record shop. David Attenborough with a Technics 1200. The feeling of finding a $2 record that ruins you for a week. The moment a dance floor collectively realizes they're somewhere special. Naturalists with disco heads and jungle sensibilities.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TONE OF VOICE -->
+<section id="tov">
+  <div class="section-label">03 — Tone of Voice Matrix</div>
+
+  <div class="tov-matrix">
+    <div class="tov-cell header">Register</div>
+    <div class="tov-cell header">Context</div>
+    <div class="tov-cell header">Examples</div>
+    <div class="tov-cell header">Adjectives</div>
+
+    <!-- Row 1 -->
+    <div class="tov-cell active">
+      <span class="tov-register">Warm Naturalist</span>
+      <p style="font-size:12px; color:var(--muted);">Primary register — used 70% of all comms</p>
+    </div>
+    <div class="tov-cell">
+      <div class="tov-context">When to use</div>
+      <p style="font-size:13px; color:var(--cream); line-height:1.7;">Event announcements, Instagram captions, tracklist reveals, general social presence, Soundcloud descriptions, artist bios on booking platforms.</p>
+    </div>
+    <div class="tov-cell">
+      <ul class="tov-examples">
+        <li>We played the whole second half on gut instinct and it was the best call of the night.</li>
+        <li>Something about finding this record in a bin made it hit differently tonight.</li>
+        <li>Iguazu Falls → George Duke → some forgotten Brazilian boogie → everyone dancing. You can't plan this.</li>
+        <li>The floor tonight was its own ecosystem. We just fed it.</li>
+      </ul>
+    </div>
+    <div class="tov-cell active">
+      <div class="tov-adj">
+        <span class="adj-tag">curious</span>
+        <span class="adj-tag">warm</span>
+        <span class="adj-tag">unhurried</span>
+        <span class="adj-tag">specific</span>
+        <span class="adj-tag">alive</span>
+        <span class="adj-tag">generous</span>
+      </div>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="tov-cell">
+      <span class="tov-register">Field Notes</span>
+      <p style="font-size:12px; color:var(--muted);">Secondary register — used for deeper content</p>
+    </div>
+    <div class="tov-cell">
+      <div class="tov-context">When to use</div>
+      <p style="font-size:13px; color:var(--cream); line-height:1.7;">Mix descriptions, long-form Instagram captions, Soundcloud track notes, RA bio and event descriptions, liner notes aesthetic.</p>
+    </div>
+    <div class="tov-cell">
+      <ul class="tov-examples">
+        <li>This mix was recorded on a Tuesday in February. We weren't planning it — it just started.</li>
+        <li>Entry point: a 1977 Afro-funk obscurity from Benin. Exit point: somewhere you didn't expect to end up.</li>
+        <li>What holds a set together isn't BPM. It's mood, tension, and the specific quality of a room's attention at 2am.</li>
+      </ul>
+    </div>
+    <div class="tov-cell">
+      <div class="tov-adj">
+        <span class="adj-tag">observational</span>
+        <span class="adj-tag">literary</span>
+        <span class="adj-tag">detailed</span>
+        <span class="adj-tag">honest</span>
+        <span class="adj-tag">contemplative</span>
+      </div>
+    </div>
+
+    <!-- Row 3 -->
+    <div class="tov-cell">
+      <span class="tov-register">Dry Wit</span>
+      <p style="font-size:12px; color:var(--muted);">Accent register — used sparingly</p>
+    </div>
+    <div class="tov-cell">
+      <div class="tov-context">When to use</div>
+      <p style="font-size:13px; color:var(--cream); line-height:1.7;">Meme-format social posts, Reels/Stories humor, replies and comments, in-shop event copy, late-night social posting. Never in booking materials.</p>
+    </div>
+    <div class="tov-cell">
+      <ul class="tov-examples">
+        <li>Spending $40 on a record you've never heard is called optimism.</li>
+        <li>If you know what this record is, please don't tell anyone at the bar.</li>
+        <li>Set reportedly described as "danceable but also kind of sad." We'll take it.</li>
+      </ul>
+    </div>
+    <div class="tov-cell">
+      <div class="tov-adj">
+        <span class="adj-tag">deadpan</span>
+        <span class="adj-tag">understated</span>
+        <span class="adj-tag">knowing</span>
+        <span class="adj-tag">self-aware</span>
+        <span class="adj-tag">never try-hard</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tov-dividers">
+    <div class="tov-divider-cell">
+      <h4 class="yes">Sound Like This</h4>
+      <ul class="yes">
+        <li>Specific about music — name records, artists, moments</li>
+        <li>Invite people into knowledge without gatekeeping</li>
+        <li>Let excitement show — it's infectious, not uncool</li>
+        <li>Write about how music feels in a body, in a room</li>
+        <li>Acknowledge the collective — Alvi, Ricky, and Baby as voices</li>
+        <li>Reference the city, the hour, the physical context of playing</li>
+        <li>Use plain language even about complex ideas</li>
+      </ul>
+    </div>
+    <div class="tov-divider-cell">
+      <h4 class="no">Never Sound Like This</h4>
+      <ul class="no">
+        <li>Generic hype copy ("incredible vibes," "fire set")</li>
+        <li>Pretentious music criticism or name-dropping for status</li>
+        <li>Overly promotional — "the best DJ collective in NYC"</li>
+        <li>Detached or ironic in a way that creates distance</li>
+        <li>Aggressive self-marketing without substance</li>
+        <li>Trend-chasing language that dates in six months</li>
+        <li>Anything that makes the listener feel like an outsider</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- MESSAGING HIERARCHY -->
+<section id="messaging">
+  <div class="section-label">04 — Messaging Hierarchy</div>
+  <div class="msg-stack">
+    <div class="msg-row">
+      <div class="msg-cell msg-tier">
+        <div class="msg-tier-num">01</div>
+        <div class="msg-tier-name">Brand Line</div>
+      </div>
+      <div class="msg-cell">
+        <div class="msg-main">THE CITY IS A ZOO. WE ARE ITS DJS.</div>
+        <p class="msg-desc">Primary brand statement. Not a tagline for every post — an internal north star. Informs all copy. Connects name to purpose, urban setting to sonic range.</p>
+      </div>
+      <div class="msg-cell">
+        <p class="msg-copy">Used on: RA header, booking decks, profile bios. The sentence that answers "who is Metro Zoo?"</p>
+      </div>
+    </div>
+    <div class="msg-row">
+      <div class="msg-cell msg-tier">
+        <div class="msg-tier-num">02</div>
+        <div class="msg-tier-name">Mission</div>
+      </div>
+      <div class="msg-cell">
+        <div class="msg-main">Every record is a species. Every set is an expedition.</div>
+        <p class="msg-desc">Translates the naturalist/explorer brand DNA into music language. Positions curation as genuine intellectual and emotional labor.</p>
+      </div>
+      <div class="msg-cell">
+        <p class="msg-copy">Used in: mix descriptions, long Instagram captions, bio sections on Soundcloud and Mixcloud. Conveys what they do and why it matters.</p>
+      </div>
+    </div>
+    <div class="msg-row">
+      <div class="msg-cell msg-tier">
+        <div class="msg-tier-num">03</div>
+        <div class="msg-tier-name">Collective</div>
+      </div>
+      <div class="msg-cell">
+        <div class="msg-main">Three heads, one ecosystem.</div>
+        <p class="msg-desc">Acknowledges the three-person structure. The "ecosystem" framing signals that differences in taste are a feature — they create diversity, not division.</p>
+      </div>
+      <div class="msg-cell">
+        <p class="msg-copy">Used in: booking inquiries, artist introductions, social content that features individual members. Celebrates multiplicity.</p>
+      </div>
+    </div>
+    <div class="msg-row">
+      <div class="msg-cell msg-tier">
+        <div class="msg-tier-num">04</div>
+        <div class="msg-tier-name">Capabilities</div>
+      </div>
+      <div class="msg-cell">
+        <div class="msg-main">House. Dub. Jazz. Disco. Balearic. World. Digital or vinyl. Your room.</div>
+        <p class="msg-desc">Functional message for booking contexts. Demonstrates range and flexibility without reducing to genre labels. "Your room" signals adaptability to venue needs.</p>
+      </div>
+      <div class="msg-cell">
+        <p class="msg-copy">Used in: RA event listings, booking emails, venue one-pagers. The message that gets you the gig.</p>
+      </div>
+    </div>
+    <div class="msg-row">
+      <div class="msg-cell msg-tier">
+        <div class="msg-tier-num">05</div>
+        <div class="msg-tier-name">Social Hook</div>
+      </div>
+      <div class="msg-cell">
+        <div class="msg-main">We went to the shop. We went deep. Here's what happened.</div>
+        <p class="msg-desc">Content series framing. The "In The Shop" format — referencing Razor-N-Tape's record shop — becomes a recurring content archetype. Discovery documented in real time.</p>
+      </div>
+      <div class="msg-cell">
+        <p class="msg-copy">Used in: Instagram Reels, Stories, record-shopping content. Maintains community connection between bookings. Drives organic reach via relatable crate-digging content.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COLOR SYSTEM -->
+<section id="color">
+  <div class="section-label">05 — Color System</div>
+  <div class="color-system">
+    <div class="swatch">
+      <div class="swatch-fill" style="background:#0a0a0a;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name" style="color:#f5f0e8;">Midnight</div>
+        <div class="swatch-hex">#0a0a0a</div>
+        <div class="swatch-role">Primary Background</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-fill" style="background:#f5f0e8;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name" style="color:#0a0a0a;">Bone</div>
+        <div class="swatch-hex">#f5f0e8</div>
+        <div class="swatch-role">Primary Text / Inverse BG</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-fill" style="background:#d93a2b;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name" style="color:#f5f0e8;">Zoo Red</div>
+        <div class="swatch-hex">#d93a2b</div>
+        <div class="swatch-role">Brand Accent / Primary</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-fill" style="background:#4dff91;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name" style="color:#0a0a0a;">Electric Jungle</div>
+        <div class="swatch-hex">#4dff91</div>
+        <div class="swatch-role">Digital Accent / CTA</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-fill" style="background:#e8c547;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name" style="color:#0a0a0a;">Warm Vinyl</div>
+        <div class="swatch-hex">#e8c547</div>
+        <div class="swatch-role">Warmth / Section Accent</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="color-usage">
+    <div class="color-usage-cell">
+      <h4>Print / Poster</h4>
+      <div class="usage-example">Midnight bg + Bone type</div>
+      <div class="usage-example">Zoo <span>Red</span> bg + Bone type</div>
+      <div class="usage-example">Bone bg + Midnight type + <span>Red</span> accent</div>
+      <div class="usage-example" style="margin-top:1rem; font-style:italic; color:var(--muted); font-size:12px;">Animals always in duotone — one Zoo Red, one accent. Backgrounds always flat, never gradient.</div>
+    </div>
+    <div class="color-usage-cell">
+      <h4>Instagram / Social</h4>
+      <div class="usage-example">Alternating: <span>Red</span>, Midnight, Bone covers</div>
+      <div class="usage-example"><span>Electric Jungle</span> for in-shop content</div>
+      <div class="usage-example"><span>Warm Vinyl</span> for mix / sound posts</div>
+      <div class="usage-example" style="margin-top:1rem; font-style:italic; color:var(--muted); font-size:12px;">Grid should read like a field guide — varied but clearly from the same world.</div>
+    </div>
+    <div class="color-usage-cell">
+      <h4>Resident Advisor / Web</h4>
+      <div class="usage-example">Midnight as canonical background</div>
+      <div class="usage-example"><span>Electric Jungle</span> for hyperlinks + CTAs</div>
+      <div class="usage-example">Bone for all body copy</div>
+      <div class="usage-example" style="margin-top:1rem; font-style:italic; color:var(--muted); font-size:12px;">Digital contexts: reduce Red, increase Electric Jungle. Cleaner, more legible.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TYPOGRAPHY -->
+<section id="typography">
+  <div class="section-label">06 — Typography System</div>
+  <div class="type-specimens">
+    <div class="type-row">
+      <div class="type-meta">
+        <label>Display</label>
+        <p>Bebas Neue</p>
+        <small>Event names, posters, hero type, all-caps statements. The voice of Metro Zoo shouting.</small>
+      </div>
+      <div class="type-sample-display">METRO ZOO<br>LIVE ALL NIGHT</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <label>Narrative</label>
+        <p>DM Serif Display Italic</p>
+        <small>Pull quotes, mix descriptions, brand voice moments. The heart of the writing.</small>
+      </div>
+      <div class="type-sample-serif">"The best sets feel like you've been somewhere. Metro Zoo takes you."</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <label>Functional</label>
+        <p>Space Mono</p>
+        <small>Dates, handles, labels, metadata. The nerdy, utilitarian layer. Honest about being text.</small>
+      </div>
+      <div class="type-sample-mono">@the_metro_zoo · 251 Bushwick Ave · FRI 11/07 · 4PM–8PM<br>Alvi / Ricky / Baby · Digital or Vinyl · Booking: [email]</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <label>Body / Extended</label>
+        <p>IBM Plex Mono</p>
+        <small>Long-form copy, RA descriptions, liner notes. Technical warmth.</small>
+      </div>
+      <div class="type-sample-body">Metro Zoo are three selectors operating from the premise that a city sounds like everything at once. House, dub, jazz, disco, balearic, and world music — not as genres to toggle between, but as dialects of a single conversation. They play digital or vinyl depending on what the room needs.</div>
+    </div>
+  </div>
+  <div class="type-scale">
+    <h4>Type Scale</h4>
+    <div class="scale-row">
+      <span class="scale-size">Bebas / 120px+</span>
+      <span class="scale-use">Hero / Poster Title</span>
+      <span style="font-family:var(--font-display); font-size:48px; line-height:1;">METRO ZOO</span>
+    </div>
+    <div class="scale-row">
+      <span class="scale-size">Bebas / 48px</span>
+      <span class="scale-use">Section Header</span>
+      <span style="font-family:var(--font-display); font-size:36px; line-height:1;">ALL NIGHT LONG</span>
+    </div>
+    <div class="scale-row">
+      <span class="scale-size">DM Serif / 28px</span>
+      <span class="scale-use">Pull Quote</span>
+      <span style="font-family:var(--font-serif); font-style:italic; font-size:22px;">Three heads, one ecosystem.</span>
+    </div>
+    <div class="scale-row">
+      <span class="scale-size">Space Mono / 14px</span>
+      <span class="scale-use">Labels / Meta</span>
+      <span style="font-family:var(--font-mono); font-size:13px; color:var(--muted);">FRI · 23.08.2025 · 4PM–8PM · 110 Meserole Ave</span>
+    </div>
+    <div class="scale-row">
+      <span class="scale-size">IBM Plex / 14px</span>
+      <span class="scale-use">Body Copy</span>
+      <span style="font-family:var(--font-body); font-size:13px; color:var(--cream);">The city is a zoo. We are its DJs.</span>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL STRATEGY -->
+<section id="social">
+  <div class="section-label">07 — Social Platform Strategy</div>
+
+  <div class="social-grid">
+    <!-- Instagram -->
+    <div class="social-card">
+      <div class="social-platform">Instagram</div>
+      <div class="social-handle">@the_metro_zoo</div>
+      <p style="font-size:13px; color:var(--muted); line-height:1.7;">Primary brand window. Visual identity lives here first. Feed as a curated field guide — every post adds a specimen to the collection.</p>
+      
+      <div class="social-content-type">Content Series</div>
+      <div class="social-detail">
+        <strong style="color:var(--warm);">In The Shop</strong> — Record shopping content at Razor-N-Tape, local shops, and on the road. Behind-the-dig footage. Shows the labor of curation.<br><br>
+        <strong style="color:var(--warm);">Species Profile</strong> — Event flyers using the animal/genre visual system. One animal = one genre mood. Builds visual language over time.<br><br>
+        <strong style="color:var(--warm);">Field Recordings</strong> — Reels from sets and venues. Short clips with warm, quiet captions. Never "ICYMI we went crazy."<br><br>
+        <strong style="color:var(--warm);">The Migration</strong> — Tracklist reveals as visual posts. Record covers, handwritten notes, or typographic lists.
+      </div>
+
+      <div class="social-content-type">Grid Principle</div>
+      <div class="social-detail">Alternate flyer (bold color), photo (natural), text card (typographic). Never three of the same. Grid reads as the collected works of three very curious people.</div>
+
+      <div class="social-content-type">Caption Approach</div>
+      <div class="social-detail">Always specific. Name the record, the moment, the person. Short captions for visual posts, long for mix reveals. Use "we" — always the collective. End with a listening question, not a CTA.</div>
+    </div>
+
+    <!-- Soundcloud -->
+    <div class="social-card">
+      <div class="social-platform">Soundcloud</div>
+      <div class="social-handle">soundcloud.com/the-metro-zoo</div>
+      <p style="font-size:13px; color:var(--muted); line-height:1.7;">Deep listening destination. Every mix is a document. Descriptions treated as liner notes, not SEO. The permanent archive.</p>
+
+      <div class="social-content-type">Mix Naming System</div>
+      <div class="social-detail">
+        <strong style="color:var(--warm);">Metro Zoo Mix Series</strong> — Numbered. Simple. Let the listening do the work.<br>
+        <em style="color:var(--muted);">Metro Zoo Mix 001 / Metro Zoo Mix 002...</em><br><br>
+        <strong style="color:var(--warm);">In The Shop Sessions</strong> — Live impromptu mixes recorded in record shop settings. Rawer, shorter.<br><br>
+        <strong style="color:var(--warm);">Location Mixes</strong> — Named after physical contexts.<br>
+        <em style="color:var(--muted);">Metro Zoo — Bushwick, 4AM / Metro Zoo — Ibiza, Afternoon</em>
+      </div>
+
+      <div class="social-content-type">Description Template</div>
+      <div class="social-detail" style="background:var(--mid); padding:1rem; font-style:italic; margin-top:0.5rem;">
+        [One sentence about where/when/why this was made.]<br><br>
+        [One sentence about the emotional or geographic logic of the set.]<br><br>
+        Tracklist below.<br><br>
+        Recorded by [Alvi/Ricky/Baby]. [City, Month Year.]
+      </div>
+
+      <div class="social-content-type">Upload Frequency</div>
+      <div class="social-detail">One mix per 6–8 weeks. Quality over volume. Each mix should feel like something you return to.</div>
+    </div>
+
+    <!-- Resident Advisor -->
+    <div class="social-card">
+      <div class="social-platform">Resident Advisor</div>
+      <div class="social-handle">ra.co/dj/metro-zoo</div>
+      <p style="font-size:13px; color:var(--muted); line-height:1.7;">Credibility anchor. Where the music industry finds you. Every element of the RA page should communicate: knowledgeable, warm, genuinely committed to the craft.</p>
+
+      <div class="social-content-type">Profile Strategy</div>
+      <div class="social-detail">
+        <strong style="color:var(--warm);">Bio</strong> — Third-person, DM Serif voice. Lead with sound, not status. Venues as context, not flex.<br><br>
+        <strong style="color:var(--warm);">Event Listings</strong> — Always list all three names. Describe the musical territory of the night, not just the event name.<br><br>
+        <strong style="color:var(--warm);">Tag Strategy</strong> — Use genre tags accurately: House, Disco, Jazz, World, Balearic. Never over-tag toward trend. Consistency builds RA algorithm trust.<br><br>
+        <strong style="color:var(--warm);">Photo</strong> — Always three together. Active shot (playing, digging) over posed. Shows the work.
+      </div>
+
+      <div class="social-content-type">Booking Text</div>
+      <div class="social-detail">Include digital + vinyl capability explicitly. Reference past venues by type (listening bar, warehouse, intimate club) not just by name. Shows range of fit.</div>
+    </div>
+  </div>
+
+  <!-- Content Pillars -->
+  <div class="content-pillars-grid">
+    <div class="content-pillar">
+      <div class="pillar-pct">40%</div>
+      <div class="pillar-title">CURATION</div>
+      <p class="pillar-desc">Mix reveals, tracklists, record finds, in-shop content. Demonstrates expertise. Most shareable by other music people.</p>
+    </div>
+    <div class="content-pillar">
+      <div class="pillar-pct">30%</div>
+      <div class="pillar-title">PRESENCE</div>
+      <p class="pillar-desc">Event announcements, live footage, venue photos. Builds FOMO and local scene connection.</p>
+    </div>
+    <div class="content-pillar">
+      <div class="pillar-pct">20%</div>
+      <div class="pillar-title">CULTURE</div>
+      <p class="pillar-desc">Things they love that aren't self-promotional: cities, food, film, sounds from travels. Makes the brand a whole world.</p>
+    </div>
+    <div class="content-pillar">
+      <div class="pillar-pct">10%</div>
+      <div class="pillar-title">COLLECTIVE</div>
+      <p class="pillar-desc">Behind-the-scenes three of them together. Humanizes the brand. The relationship is part of the product.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RESIDENT ADVISOR -->
+<section id="ra">
+  <div class="section-label">08 — Resident Advisor Profile Template</div>
+
+  <div class="ra-bio">
+    Metro Zoo are Alvi, Ricky, and Baby — three selectors working out of New York City whose sets read like field dispatches from an ongoing expedition through recorded music. They move between house, dub, jazz, disco, balearic, and world music not as a stylistic exercise but as a genuine attempt to trace the underground routes that connect all of it. Having played Cafe Balearica, Razor-N-Tape, Lise & Vito, Jupiter Disco, and Sauced, they've built a reputation for sets that feel both deeply researched and utterly in the moment. They play digital or vinyl. They play until the room finds itself.
+  </div>
+
+  <div class="ra-grid">
+    <div class="ra-cell">
+      <h3>Event Description Template</h3>
+      <p style="font-size:13px; color:var(--cream); line-height:1.8; font-style:italic; background:var(--mid); padding:1.5rem; margin-bottom:1.5rem;">
+        Metro Zoo (Alvi, Ricky, Baby) return to [VENUE] for [a night of / an afternoon of / a long session in] [brief description of sonic territory — e.g. "searching, balearic-tinged house and disco" / "deep jazz-inflected selections and dub excursions"]. Expect the unexpected — they've never played the same set twice and they're not about to start.
+      </p>
+      <ul>
+        <li>Always list all three members by first name</li>
+        <li>Use sonic adjectives, not genre lists alone</li>
+        <li>One sentence on what makes this night specific</li>
+        <li>Keep tone warm — not promotional, not cold</li>
+        <li>Never use: "incredible," "fire," "unmissable," "vibes"</li>
+      </ul>
+    </div>
+    <div class="ra-cell">
+      <h3>Tag & Metadata Strategy</h3>
+      <ul>
+        <li>Primary tags: House, Disco, Jazz, World Music, Balearic</li>
+        <li>Secondary: Dub, Eclectic, Record Collector</li>
+        <li>Never add Techno, EDM, or trend-adjacent tags for exposure</li>
+        <li>Event time: always list doors + music start separately</li>
+        <li>Ticket price: free when possible (builds community faster)</li>
+        <li>Event photo: bold animal poster, no busy collages</li>
+        <li>Link Soundcloud in every event: "Listen before you come"</li>
+        <li>Venue description: write it yourself, don't copy-paste</li>
+      </ul>
+    </div>
+    <div class="ra-cell">
+      <h3>Engagement Strategy</h3>
+      <ul>
+        <li>Respond to all RA comments within 24hrs after events</li>
+        <li>Add upcoming events to RA calendar minimum 3 weeks ahead</li>
+        <li>Follow and track RA picks for similar NYC-region acts</li>
+        <li>Submit mixes to RA Podcast once established (Mix 010+)</li>
+        <li>Cross-link RA profile from Instagram bio and Soundcloud</li>
+        <li>Attend other listed RA events to build scene reciprocity</li>
+      </ul>
+    </div>
+    <div class="ra-cell">
+      <h3>Booking Materials</h3>
+      <ul>
+        <li>One-pager PDF: logo, bio (50 words), genre list, venues, contacts</li>
+        <li>Tech rider: CDJ or Technics, standard mixer, separate monitor mix</li>
+        <li>Set length tiers: 2hr / 3hr / open-to-close — price accordingly</li>
+        <li>Venue type fit: listening bars, intimate clubs, loft parties, daytime</li>
+        <li>Preferred set times: peak (12–3am) or closing (3am–late)</li>
+        <li>Contact: single shared booking email, respond within 48hrs</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- VISUAL LANGUAGE -->
+<section id="visual">
+  <div class="section-label">09 — Visual Language System</div>
+  <div class="visual-grid">
+    <div class="visual-cell">
+      <h3>The Animal System</h3>
+      <p style="font-size:13px; color:var(--cream); line-height:1.8; margin-bottom:1.5rem;">Each animal in Metro Zoo's visual language is selected for its resonance with a sonic territory. Animals always appear in high-contrast duotone treatment — one flat color field, one accent. Never realistic photography without treatment.</p>
+      <ul>
+        <li>Fox → Balearic. Clever, twilight-dwelling, borderless.</li>
+        <li>Toucan → House. Tropical, rhythmic, unexpectedly joyful.</li>
+        <li>Heron → Jazz. Patient, precise, sudden movement.</li>
+        <li>Sloth → Dub. Slow, heavy, all-consuming presence.</li>
+        <li>Frog → World Music. Amphibious, borderless, calls across distances.</li>
+        <li>Peacock → Disco. Extravagant, ecstatic, fully committed to color.</li>
+        <li>Pigeon → NYC / Local. Underestimated. Completely at home.</li>
+        <li>Eagle/Hawk → Open-to-close. Sees the whole terrain.</li>
+      </ul>
+    </div>
+    <div class="visual-cell">
+      <h3>Poster System</h3>
+      <ul>
+        <li>Format: portrait, 4:5 ratio for feed, 9:16 for stories</li>
+        <li>Structure: Venue + date (top, Space Mono) / Animal (center) / METRO ZOO (large Bebas) / Artists (small Bebas) / Details (bottom, Space Mono)</li>
+        <li>Color: always one flat background + one accent, no gradients</li>
+        <li>Animal: always treated in duotone matching poster palette</li>
+        <li>Typography: all Bebas Neue for display, Space Mono for info</li>
+        <li>White space: generous — let the animal breathe</li>
+        <li>No drop shadows, no texture overlays, no grain effects</li>
+        <li>Always: ALVI · RICKY · BABY at bottom, same size</li>
+      </ul>
+    </div>
+    <div class="visual-cell">
+      <h3>Photography Direction</h3>
+      <ul>
+        <li>In-shop: warm, natural light. Records visible. People in motion.</li>
+        <li>At-venue: low light, authentic — no flash photography on the night</li>
+        <li>Candid over posed — catch the room, not the pose</li>
+        <li>Edit palette: warm, slightly desaturated. Never HDR or heavily filtered.</li>
+        <li>Avoid: DJ booth hero shots. Show the crowd relationship.</li>
+        <li>Travel content: cities as ecosystems. Streets, markets, record shops.</li>
+        <li>Collective portraits: all three, active context, not a press shot.</li>
+      </ul>
+    </div>
+    <div class="visual-cell">
+      <h3>Flyer / Poster Mocks</h3>
+      <div class="mock-grid">
+        <!-- Poster mock 1 -->
+        <div class="poster-mock red-bg">
+          <div class="pm-tag">Idle Mind · 623 Manhattan Ave</div>
+          <div class="pm-title" style="color:#f5f0e8;">METRO<br>ZOO</div>
+          <div class="pm-footer">ALVI · RICKY · BABY · 10PM–LATE</div>
+        </div>
+        <!-- Poster mock 2 -->
+        <div class="poster-mock" style="background:#f5f0e8;">
+          <div class="pm-tag" style="color:#2a2a2a;">Sleepwalk · Bushwick Ave</div>
+          <div class="pm-title" style="color:#0a0a0a;">IN<br>THE<br>SHOP</div>
+          <div class="pm-footer" style="color:#5a5a5a;">FRI 11/07 · 4PM–8PM</div>
+        </div>
+        <!-- Poster mock 3 -->
+        <div class="poster-mock green-bg">
+          <div class="pm-tag" style="color:#4dff91; opacity:0.8;">Cafe Balearica</div>
+          <div class="pm-title" style="color:#4dff91;">ZOO<br>OUT<br>SIDE</div>
+          <div class="pm-footer" style="color:rgba(77,255,145,0.5);">SUN · FREE ALL NIGHT</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    <h2>METRO <span>ZOO</span></h2>
+    <p>Brand Identity System — Prepared by studio.build, 2025<br>Alvi · Ricky · Baby · New York City<br>
+    The city is a zoo. We are its DJs.</p>
+  </div>
+  <div class="footer-right">
+    <p>Collective · <strong>Metro Zoo</strong></p>
+    <p>Venues · Cafe Balearica, Razor-N-Tape,<br>Lise & Vito, Jupiter Disco, Sauced</p>
+    <p>Territory · New York City</p>
+    <p>Prepared by · <strong>studio.build</strong></p>
+  </div>
+</footer>
+
+</body>
+</html>
